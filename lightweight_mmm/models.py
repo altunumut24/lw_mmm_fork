@@ -347,7 +347,7 @@ def media_mix_model(
       dim=-2 if media_data.ndim == 3 else -1):
     coef_media = numpyro.sample(
         name="channel_coef_media" if media_data.ndim == 3 else "coef_media",
-        fn=dist.HalfNormal(scale=media_prior))
+        fn=dist.Uniform(low=0,high=media_prior))
     if media_data.ndim == 3:
       with numpyro.plate(
           name="geo_media_plate",
